@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoSicurezza.WASM", "DemoSicurezza.WASM\DemoSicurezza.WASM.csproj", "{78DA760B-037A-4C7D-8499-98A27AAAB40F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoSicurezza.WASM", "DemoSicurezza.WASM\DemoSicurezza.WASM.csproj", "{78DA760B-037A-4C7D-8499-98A27AAAB40F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoSicurezza.API", "DemoSicurezza.API\DemoSicurezza.API.csproj", "{54D393D9-4D96-43D3-A40C-BEA82B0E02C2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoSicurezza.API", "DemoSicurezza.API\DemoSicurezza.API.csproj", "{54D393D9-4D96-43D3-A40C-BEA82B0E02C2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoSicurezza.Shared", "DemoSicurezza.Shared\DemoSicurezza.Shared.csproj", "{7B362391-F069-41CE-8C66-4860A2D85949}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoSicurezza.Shared", "DemoSicurezza.Shared\DemoSicurezza.Shared.csproj", "{7B362391-F069-41CE-8C66-4860A2D85949}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
