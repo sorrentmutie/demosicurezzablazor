@@ -1,8 +1,10 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DemoSicurezza.API.Controllers
 {
     [ApiController]
+    [Authorize(Policy = "BlazorAdmin")]
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
     {

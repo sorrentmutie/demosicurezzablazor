@@ -85,15 +85,22 @@ namespace DemoSicurezza.API.Controllers
                 symmetricSecurityKey, SecurityAlgorithms.HmacSha256);
 
             IList<string> roleNames = await userManager.GetRolesAsync(identityUser);
+            var userclaims = await userManager.GetClaimsAsync(identityUser);
+            var blazorClaim = userclaims.FirstOrDefault(x => x.Type == "blazor");
+            //var claims = ClaimsPrincipal.Current.Identities.First().Claims.ToList();
+
 
             var claims = new List<Claim>()
                 {
+                    new Claim("blazor", blazorClaim?.Value ?? ""), 
                     new Claim(ClaimTypes.NameIdentifier, identityUser.Id),
                     new Claim(ClaimTypes.Name, identityUser.Email),
                     new Claim(ClaimTypes.Email, identityUser.Email),
                     new Claim(JwtRegisteredClaimNames.Sub, identityUser.Email),
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 }.Union(roleNames.Select(role => new Claim(ClaimTypes.Role, role)));
+
+            
 
             JwtSecurityToken jwtSecurityToken = new JwtSecurityToken(
                 configuration["Jwt:Issuer"],

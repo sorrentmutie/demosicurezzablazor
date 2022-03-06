@@ -1,4 +1,5 @@
 using DemoSicurezza.API.Data;
+using DemoSicurezza.API.Security;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -41,6 +42,15 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         };
     });
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
+builder.Services.AddAuthorization(opts => {
+    opts.AddPolicy("BlazorAdmin", policy => {
+        policy.RequireRole("admin");
+        policy.RequireClaim("blazor", "maestro");
+    });
+});
+
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -55,6 +65,21 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    var roleManager =
+            builder.Services.BuildServiceProvider()
+                   .GetService<RoleManager<IdentityRole>>();
+
+    var userManager =
+         builder.Services.BuildServiceProvider()
+                   .GetService<UserManager<IdentityUser>>();
+
+    await SeedRuoliEUtenti.Seed(roleManager, userManager,
+        "admin@admin.com", "admin");
+
+    await SeedRuoliEUtenti.Seed(roleManager, userManager,
+        "user@user.com", "user");
+
+    //await SeedRuoliEUtenti.Seed()
 }
 
 app.UseRouting();

@@ -8,6 +8,26 @@
 
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
+<AuthorizeView>    
+    <Authorized>     
+        <h4>Ciao, @context.User.Identity.Name!</h4>    
+        <p>Contenuto visibile se l’utente è autenticato</p>
+        @if (context.User.Claims.Count() > 0)
+        {
+            <ul>
+                @foreach (var claim in context.User.Claims)
+                {
+                    <li>@claim.Type: @claim.Value</li>
+                }
+            </ul>
+        }
+    </Authorized>    
+    <NotAuthorized>    
+        <p>Non sei autenticato</p>    
+    </NotAuthorized>    
+</AuthorizeView>  
+
+
 @code {
     private int currentCount = 0;
 
