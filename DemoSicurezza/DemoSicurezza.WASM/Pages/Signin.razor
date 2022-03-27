@@ -50,10 +50,11 @@
         {
             signedInWithSuccess = true;
             string jwtToken = await httpResponseMessage.Content.ReadAsStringAsync();
-            await storageService.SetItemAsync("bearerToken", jwtToken);
-            await ((AppAuthenticationStateProvider)authenticationStateProvider).SignIn();
             httpClient.DefaultRequestHeaders.Authorization =
                 new AuthenticationHeaderValue("bearer", jwtToken);
+            await storageService.SetItemAsync("bearerToken", jwtToken);
+            await ((AppAuthenticationStateProvider)authenticationStateProvider).SignIn();
+
         }
         else
         {
