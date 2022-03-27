@@ -58,9 +58,8 @@ namespace DemoSicurezza.WASM.Providers
 
         public async Task SignIn()
         {
-            string savedToken = await localStorageService.GetItemAsStringAsync("bearerToken");
-            JwtSecurityToken jwtSecurityToken = jwtSecurityTokenHandler.ReadJwtToken(
-               savedToken.Substring(1, savedToken.Length -2));
+            string savedToken = await localStorageService.GetItemAsync<string>("bearerToken");
+            JwtSecurityToken jwtSecurityToken = jwtSecurityTokenHandler.ReadJwtToken(savedToken);
             IList<Claim> claims = jwtSecurityToken.Claims.ToList();
             claims.Add(new Claim(ClaimTypes.Name, jwtSecurityToken.Subject));
             var user = new ClaimsPrincipal(new ClaimsIdentity(claims, "jwt"));
